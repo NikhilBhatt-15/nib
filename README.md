@@ -44,7 +44,7 @@ there.
 **Windows integration**
 - Floating scratchpad on a global shortcut (Win+Alt+N, from any app). It stays on top and saves as you type.
 - Always on top (Ctrl+Alt+T), full screen (F11), and a tray icon with an optional close-to-tray mode.
-- "Edit with Nib" in the File Explorer context menu and Nib in "Open with" (per user, no admin rights needed).
+- "Edit with Nib" in the File Explorer context menu, Nib in "Open with", and a Start menu shortcut so Windows search finds it (per user, no admin rights needed).
 - Drag and drop files onto the window. Only one instance runs: opening a file from Explorer reuses the running window.
 - Start with Windows (in the tray).
 - Portable mode: put an empty file named `portable` next to `nib.exe` and all data stays in a `data` folder beside it.
@@ -71,6 +71,7 @@ there.
 
 Download `Nib-vX.Y.Z.zip` from [Releases](../../releases), extract it anywhere, and run `nib.exe`. No installer and no admin rights are needed.
 
+- To find Nib in Windows search: put `nib.exe` somewhere permanent (for example `%LOCALAPPDATA%\Programs\Nib`), run it, then choose Tools › Preferences › Add Nib to the Start menu.
 - For the Explorer menu entry: Tools › Preferences › 'Edit with Nib' in File Explorer.
 - To start with Windows: Tools › Preferences › Start with Windows.
 - For a portable copy: create an empty file called `portable` next to `nib.exe`.
