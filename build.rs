@@ -42,6 +42,8 @@ fn main() {
     println!("cargo:rerun-if-changed=native");
     println!("cargo:rerun-if-changed=nib.manifest");
     println!("cargo:rerun-if-changed=nib.rc");
+    println!("cargo:rerun-if-changed=assets/nib.ico");
+    embed_resource::compile("nib.rc", embed_resource::NONE).manifest_optional().unwrap();
 
     let mut b = cc::Build::new();
     b.cpp(true)

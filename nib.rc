@@ -1,0 +1,2 @@
+// Embedded resources: the app icon (id 1) used by Explorer, the Start menu, the taskbar and the window.
+1 ICON "assets/nib.ico"

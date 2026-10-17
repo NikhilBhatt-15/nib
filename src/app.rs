@@ -246,7 +246,15 @@ pub fn app_icon(size: i32) -> HICON {
     static BIG: OnceLock<usize> = OnceLock::new();
     static SMALL: OnceLock<usize> = OnceLock::new();
     let cell = if size <= 20 { &SMALL } else { &BIG };
-    *cell.get_or_init(|| gfx::make_icon(size) as usize) as HICON
+    *cell.get_or_init(|| {
+        // The icon embedded from assets/nib.ico (resource 1); drawn as a fallback.
+        let h = unsafe { LoadImageW(GetModuleHandleW(null()), 1 as _, IMAGE_ICON, size, size, LR_DEFAULTCOLOR) };
+        if h.is_null() {
+            gfx::make_icon(size) as usize
+        } else {
+            h as usize
+        }
+    }) as HICON
 }
 
 // ------------------------------------------------------------------ start-up
