@@ -151,6 +151,7 @@ cmds! {
     "app.closeToTray", "Preferences: Close to tray", [];
     "app.startup", "Preferences: Start with Windows", [];
     "app.explorer", "Preferences: 'Edit with Nib' in File Explorer", [];
+    "app.startMenu", "Preferences: Add Nib to the Start menu (Windows search)", [];
     "app.notesFolder", "Notes: Open notes folder", [];
     "app.setNotesFolder", "Notes: Choose notes folder…", [];
     "app.dataFolder", "Preferences: Open data folder", [];
@@ -289,6 +290,7 @@ fn checked(id: &str) -> Option<bool> {
         "app.closeToTray" => s.close_to_tray,
         "app.startup" => crate::settings::autostart::enabled(),
         "app.explorer" => shell::explorer_menu_installed(),
+        "app.startMenu" => shell::start_menu_installed(),
         "view.split" => app().st.borrow().split,
         "view.preview" => {
             let st = app().st.borrow();
@@ -516,6 +518,7 @@ pub fn run(id: &str) {
             }
         }
         "app.explorer" => shell::toggle_explorer_menu(),
+        "app.startMenu" => shell::toggle_start_menu(),
         "app.notesFolder" => notes::open_notes_folder(),
         "app.setNotesFolder" => notes::choose_notes_folder(),
         "app.dataFolder" => util::shell_open(&app().paths.data.display().to_string()),
@@ -829,7 +832,7 @@ static MENU_BAR: &[(&str, &[M])] = &[
             M::C("app.notesFolder"),
             M::C("app.setNotesFolder"),
             M::Sep,
-            M::Sub("&Preferences", &[M::C("app.settings"), M::Sep, M::C("app.restoreSession"), M::C("app.confirmClose"), M::C("app.tray"), M::C("app.closeToTray"), M::C("app.startup"), M::C("app.explorer"), M::Sep, M::C("app.dataFolder")]),
+            M::Sub("&Preferences", &[M::C("app.settings"), M::Sep, M::C("app.restoreSession"), M::C("app.confirmClose"), M::C("app.tray"), M::C("app.closeToTray"), M::C("app.startup"), M::C("app.startMenu"), M::C("app.explorer"), M::Sep, M::C("app.dataFolder")]),
         ],
     ),
     ("&Help", &[M::C("app.shortcuts"), M::C("app.about")]),
