@@ -82,6 +82,10 @@ pub fn apply_theme() {
     for margin in 0..4 {
         v.m(SCI_SETMARGINWIDTHN, margin, 0);
     }
+    // With no margin to draw in, Scintilla paints change-history markers as a
+    // full-line background (the yellow lines). The pad saves continuously, so
+    // there is nothing for change history to show anyway.
+    v.m(SCI_SETCHANGEHISTORY, SC_CHANGE_HISTORY_DISABLED, 0);
     v.m(SCI_SETWRAPMODE, SC_WRAP_WORD, 0);
     v.m(SCI_SETMARGINLEFT, 0, app::px(8) as i64);
     crate::darkmode::set_window_dark(v.hwnd, t.dark);
